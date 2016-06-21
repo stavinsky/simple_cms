@@ -1,0 +1,10 @@
+[run]
+omit =
+    *apps.py,
+    *tests/*,
+    *wsgi.py,
+    config.py
+
+[html]
+# title="test coverage report"
+directory = coverage/html_report
