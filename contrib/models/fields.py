@@ -1,6 +1,4 @@
 from .validators import (
-    date_time_type_validator,
-    string_type_validator,
     MinLength,
     MaxLength
 )
@@ -15,13 +13,17 @@ class Field(object):
             self.validators += validators
 
     def clean(self, value):
+        value = self.to_python(value)
         for validator in self.validators:
             validator(value)
+        return value
+
+    def to_python(self, value):
+        return value
 
 
 class DateTimeField(Field):
     validators = [
-        date_time_type_validator,
     ]
 
 
@@ -33,3 +35,6 @@ class StringField(Field):
             self.validators.insert(0, MinLength(min_length))
         if max_length:
             self.validators.insert(0, MaxLength(max_length))
+
+    def to_python(self, value):
+        return str(value)

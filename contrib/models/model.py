@@ -15,4 +15,5 @@ class Model(object):
     def clean_fields(self):
         for field in self.get_fields():
             clean = getattr(type(self), field).clean
-            clean(getattr(self, field))
+            cleaned_field = clean(getattr(self, field))
+            setattr(self, field, cleaned_field)
