@@ -1,3 +1,4 @@
+import json
 from .fields import Field
 
 
@@ -17,3 +18,7 @@ class Model(object):
             clean = getattr(type(self), field).clean
             cleaned_field = clean(getattr(self, field))
             setattr(self, field, cleaned_field)
+
+    def to_json(self):
+        data = {field: getattr(self, field) for field in self.get_fields()}
+        return json.dumps(data)

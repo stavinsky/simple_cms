@@ -42,3 +42,10 @@ class TestModel:
         article.str_field = "data1"
         with pytest.raises(ValidationError):
             article.clean_fields()
+
+    def test_model_to_json(self):
+        class Article(Model):
+            str_field = StringField(max_length=4, validators=[])
+        article = Article()
+        article.str_field = "data1"
+        article.to_json()
