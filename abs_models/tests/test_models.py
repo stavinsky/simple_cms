@@ -1,8 +1,12 @@
 import pytest
-from contrib.models.validators import (MinLength)
-from contrib.models.exceptions import ValidationError
-from contrib.models.model import Model
-from contrib.models.fields import StringField
+import sys
+import os
+sys.path.insert(0, os.path.abspath('abs_models'))
+print(sys.path)
+from absmodels.validators import MinLength
+from absmodels.exceptions import ValidationError
+from absmodels.model import Model
+from absmodels.fields import StringField
 
 
 class TestModel:
